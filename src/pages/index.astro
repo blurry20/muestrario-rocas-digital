@@ -1,0 +1,186 @@
+---
+const specimens = [
+  { id: '01', name: 'Limonita', category: 'Óxidos e hidróxidos', color: 'Amarillo ocre / pardo', hardness: '1–5,5', formula: 'Mezcla de óxidos e hidróxidos hidratados de hierro', streak: 'Amarillo parduzco', luster: 'Terroso, mate o submetálico', habit: 'Masivo, terroso o botrioidal', note: 'Su color ocre y su raya amarillenta o parda ayudan a reconocerla.', lab: 'Observar el color y realizar la prueba de raya en porcelana sin esmaltar.', image: '/images/01-limonita.jpeg' },
+  { id: '02', name: 'Alita', category: 'Silicatos · clínker', color: 'Incolora, grisácea o blanquecina', hardness: 'No diagnóstica', formula: 'Ca₃SiO₅', streak: 'No suele utilizarse', luster: 'Vítreo', habit: 'Granos o cristales microscópicos', note: 'Es uno de los principales componentes del clínker del cemento Portland.', lab: 'Se identifica mediante microscopía y análisis mineralógico. Confirmar que sea alita y no albita.', image: '/images/02-alita.jpeg' },
+  { id: '03', name: 'Magnetita', category: 'Óxidos', color: 'Negro o gris negruzco', hardness: '5,5–6,5', formula: 'Fe₃O₄', streak: 'Negra', luster: 'Metálico o submetálico', habit: 'Octaédrico, granular o masivo', note: 'Es fuertemente magnética y suele sentirse relativamente pesada.', lab: 'Acercar un imán y comprobar la atracción; verificar la raya negra y el brillo.', image: '/images/03-magnetita.jpeg' },
+  { id: '04', name: 'Epidota', category: 'Silicatos · sorosilicatos', color: 'Verde pistacho / amarillento', hardness: '6–7', formula: 'Ca₂(Al,Fe³⁺)₃(SiO₄)₃(OH)', streak: 'Blanca o gris muy clara', luster: 'Vítreo', habit: 'Prismático, alargado o granular', note: 'Su color verde pistacho y sus cristales alargados son característicos.', lab: 'Observar el color, la forma de los cristales y su dureza aproximada.', image: '/images/04-epidota.jpeg' },
+  { id: '05', name: 'Hematita especular', category: 'Óxidos', color: 'Gris acero / plateado', hardness: '5–6,5', formula: 'Fe₂O₃', streak: 'Rojo parduzco', luster: 'Metálico, intenso y reflectante', habit: 'Laminar, escamoso o especular', note: 'Aunque su superficie puede ser plateada, su raya suele ser rojiza o parda.', lab: 'Comparar el brillo metálico con la raya roja parduzca para diferenciarla de la magnetita.', image: '/images/05-hematita-especular.jpeg' },
+  { id: '06', name: 'Lapislázuli', category: 'Roca · silicatos', color: 'Azul intenso / ultramarino', hardness: '5–5,5', formula: 'Roca compuesta principalmente por lazurita', streak: 'Azul pálida o blanquecina', luster: 'Vítreo o mate', habit: 'Masivo, compacto y granular', note: 'El azul intenso con pequeños puntos dorados de pirita es una combinación característica.', lab: 'Observar el color, la textura y las inclusiones; no identificarlo solo por el color.', image: '/images/06-lapislazuli.jpeg' },
+  { id: '07', name: 'Brochantita', category: 'Sulfatos', color: 'Verde esmeralda / intenso', hardness: '3,5–4', formula: 'Cu₄SO₄(OH)₆', streak: 'Verde pálida', luster: 'Vítreo o mate', habit: 'Costras, agregados fibrosos o aciculares', note: 'Su color verde intenso y su presencia como costras ayudan a reconocerla.', lab: 'Examinar el color y el hábito cristalino con lupa.', image: '/images/07-brochantita.jpeg' },
+  { id: '08', name: 'Azufre', category: 'Elementos nativos', color: 'Amarillo limón / anaranjado', hardness: '1,5–2,5', formula: 'S', streak: 'Blanca o amarillenta', luster: 'Resinoso', habit: 'Bipiramidal, granular o masivo', note: 'Es muy blando, de color amarillo y puede quebrarse con facilidad.', lab: 'Comprobar su baja dureza con una herramienta apropiada. No quemarlo.', image: '/images/08-azufre.jpeg' },
+  { id: '09', name: 'Pirita', category: 'Sulfuros', color: 'Amarillo latón / dorado pálido', hardness: '6–6,5', formula: 'FeS₂', streak: 'Negra verdosa', luster: 'Metálico', habit: 'Cúbico, piritoédrico o granular', note: 'Sus cristales cúbicos y brillo metálico ayudan a distinguirla del oro.', lab: 'Observar los cristales y comparar su raya oscura; evitar golpear la muestra.', image: '/images/09-pirita.jpeg' },
+  { id: '10', name: 'Aragonito', category: 'Carbonatos', color: 'Blanco, crema o amarillento', hardness: '3,5–4', formula: 'CaCO₃', streak: 'Blanca', luster: 'Vítreo', habit: 'Prismático, acicular o fibroso', note: 'Tiene la misma fórmula que la calcita, pero una estructura cristalina diferente.', lab: 'Observar la forma de los cristales; cualquier prueba con ácido debe ser supervisada.', image: '/images/10-aragonito.jpeg' },
+  { id: '11', name: 'Crisocola', category: 'Silicatos hidratados', color: 'Azul turquesa / verde azulado', hardness: '2–4', formula: 'Cu₂H₂Si₂O₅(OH)₄·nH₂O aprox.', streak: 'Blanca o azul muy pálida', luster: 'Vítreo, ceroso o mate', habit: 'Masivo, terroso o botrioidal', note: 'Su color azul verdoso y su textura generalmente masiva son característicos.', lab: 'Observar color, textura y baja dureza; compararla con azurita y atacamita.', image: '/images/11-crisocola.jpeg' },
+  { id: '12', name: 'Atacamita', category: 'Haluros', color: 'Verde brillante / esmeralda', hardness: '3–3,5', formula: 'Cu₂Cl(OH)₃', streak: 'Verde pálida', luster: 'Vítreo', habit: 'Prismático, acicular o granular', note: 'Su intenso color verde y su composición con cobre y cloro ayudan a identificarla.', lab: 'Examinar el color y los cristales con lupa y compararla con brochantita y crisocola.', image: '/images/12-atacamita.jpeg' },
+  { id: '13', name: 'Azurita', category: 'Carbonatos', color: 'Azul intenso / profundo', hardness: '3,5–4', formula: 'Cu₃(CO₃)₂(OH)₂', streak: 'Azul claro', luster: 'Vítreo o mate', habit: 'Prismático, tabular o masivo', note: 'Su color azul intenso es una de sus propiedades más distintivas.', lab: 'Observar el azul profundo y verificar la raya; compararla con la crisocola.', image: '/images/13-azurita.jpeg' },
+  { id: '14', name: 'Yeso fibroso', category: 'Sulfatos', color: 'Blanco, incoloro o crema', hardness: '2', formula: 'CaSO₄·2H₂O', streak: 'Blanca', luster: 'Sedoso o satinado', habit: 'Fibroso, con fibras paralelas', note: 'Su brillo sedoso y su baja dureza permiten distinguirlo de muchos minerales.', lab: 'Examinar las fibras y comprobar en una zona poco visible que puede rayarse con la uña.', image: '/images/14-yeso-fibroso.jpeg' },
+  { id: '15', name: 'Jaspe', category: 'Silicatos · calcedonia', color: 'Rojo, café, amarillo, verde o multicolor', hardness: '6,5–7', formula: 'SiO₂, con posibles impurezas', streak: 'Blanca', luster: 'Vítreo a mate', habit: 'Masivo, compacto y sin cristales visibles', note: 'Es opaco, presenta colores variados y suele mostrar manchas, bandas o patrones. Su dureza relativamente alta ayuda a distinguirlo de minerales más blandos.', lab: 'Observar color, opacidad y textura. Comprobar la dureza con una prueba controlada y comparar con cuarzo. No utilizar únicamente el color.', image: '/images/15-jaspe.jpeg' },
+  { id: '16', name: 'Hulla', category: 'Roca sedimentaria orgánica', color: 'Negro o negro parduzco', hardness: '1–3 aprox.', formula: 'Sin fórmula fija; contiene principalmente carbono', streak: 'Negra o pardo negruzca', luster: 'Mate a brillante', habit: 'Masivo, compacto o en capas', note: 'Es una roca orgánica combustible que suele mostrar bandas oscuras.', lab: 'Observar color, bandas y aspecto relativamente ligero. No quemar la muestra.', image: '/images/16-hulla.jpeg' },
+  { id: '17', name: 'Pirolusita', category: 'Óxidos', color: 'Negro / gris acero', hardness: '2–6,5 aprox.', formula: 'MnO₂', streak: 'Negra', luster: 'Metálico, submetálico o mate', habit: 'Acicular, fibroso, dendrítico o masivo', note: 'Puede dejar una raya negra y formar agregados ramificados semejantes a pequeñas ramas.', lab: 'Observar su color y realizar la prueba de raya sobre porcelana sin esmaltar.', image: '/images/17-pirolusita.jpeg' },
+  { id: '18', name: 'Hematita', category: 'Óxidos', color: 'Rojo parduzco / gris acero', hardness: '5–6,5', formula: 'Fe₂O₃', streak: 'Roja a rojo parduzca', luster: 'Metálico, submetálico o terroso', habit: 'Masivo, terroso, granular o laminar', note: 'Su raya rojiza o pardo rojiza es muy característica, incluso en muestras grises.', lab: 'Realizar una prueba de raya y diferenciarla de la magnetita, que deja raya negra.', image: '/images/18-hematita.jpeg' },
+  { id: '19', name: 'Calcopirita', category: 'Sulfuros', color: 'Amarillo latón / dorado', hardness: '3,5–4', formula: 'CuFeS₂', streak: 'Negra verdosa', luster: 'Metálico', habit: 'Masivo, granular o tetragonal', note: 'Su color dorado puede parecerse al de la pirita, pero es más blanda y puede ser iridiscente.', lab: 'Comparar dureza, raya y brillo con la pirita.', image: '/images/19-calcopirita.jpeg' },
+  { id: '20', name: 'Calcantita', category: 'Sulfatos hidratados', color: 'Azul intenso / celeste', hardness: '2,5', formula: 'CuSO₄·5H₂O', streak: 'Blanca o azul muy pálida', luster: 'Vítreo', habit: 'Prismático, granular o cristalino', note: 'Su intenso color azul y su solubilidad en agua son rasgos importantes.', lab: 'No mojar ni probar la muestra. Manipular con cuidado porque contiene cobre.', image: '/images/20-calcantita.jpeg' }
+];
+const categories = ['Todas', ...new Set(specimens.map((specimen) => specimen.category))];
+---
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="Muestrario digital interactivo de minerales y rocas." />
+    <title>Piedras Geo · Muestrario interactivo</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap');
+      :root { --ink:#1e2926; --muted:#75807b; --paper:#f4f3ee; --line:#d8d9d2; --accent:#d96645; --sage:#a9bca8; --dark:#1d3732; }
+      * { box-sizing:border-box; } html { scroll-behavior:smooth; } body { margin:0; color:var(--ink); background:var(--paper); font-family:'DM Sans',sans-serif; overflow-x:hidden; }
+      .grain { position:fixed; inset:0; pointer-events:none; z-index:20; opacity:.035; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E"); }
+      a { color:inherit; text-decoration:none; } .site-header { height:83px; padding:0 6vw; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--line); position:relative; z-index:2; }
+      .brand { display:flex; gap:11px; align-items:center; font-size:14px; letter-spacing:.08em; text-transform:uppercase; font-weight:600; } .brand i, footer i { font-family:'Playfair Display',serif; text-transform:none; letter-spacing:0; font-size:16px; }
+      .brand-mark { width:32px; height:32px; border:1px solid var(--ink); border-radius:50%; display:grid; place-items:center; font:500 10px 'DM Mono'; letter-spacing:-.08em; }
+      nav { display:flex; gap:38px; margin-left:8%; font-size:13px; color:#5f6965; } nav a { transition:color .2s; } nav a:hover { color:var(--accent); } nav span { color:var(--accent); font:11px 'DM Mono'; vertical-align:super; margin-left:3px; }
+      .header-cta { font-size:12px; background:var(--dark); color:#fff; padding:13px 18px; border-radius:2px; } .header-cta span { margin-left:12px; color:#e7ad91; font-size:16px; }
+      .hero { min-height:calc(100vh - 83px); padding:10vh 10vw 35px; position:relative; display:grid; grid-template-columns:1fr 1fr; align-items:center; max-width:1600px; margin:auto; }
+      .eyebrow { font:11px 'DM Mono',monospace; text-transform:uppercase; letter-spacing:.12em; color:var(--accent); margin:0 0 26px; } h1,h2,h3,p { margin-top:0; } h1 { font-size:clamp(60px,8vw,118px); line-height:.92; letter-spacing:-.07em; font-weight:500; margin:0 0 36px; } h1 em,h2 em { font-family:'Playfair Display',serif; font-weight:500; letter-spacing:-.06em; } .intro { max-width:330px; color:#68736e; font-size:15px; line-height:1.6; margin-bottom:34px; }
+      .primary-button { background:var(--accent); color:#fff; display:inline-flex; gap:38px; align-items:center; padding:16px 19px; font-size:12px; font-weight:600; } .primary-button span { font-size:19px; font-weight:400; }
+      .hero-art { position:relative; height:min(62vw,600px); min-height:420px; margin-left:4vw; background:#ccd7c8; overflow:hidden; background-image:linear-gradient(145deg,#d9e0d1,#a7bba9 60%,#899f95); }
+      .hero-art:before { content:''; position:absolute; width:130%; height:130%; left:-20%; top:-15%; background:radial-gradient(ellipse at 42% 42%,#e0c3ac 0 12%,transparent 12.5%), radial-gradient(ellipse at 53% 58%,#8c6655 0 17%,transparent 17.5%), radial-gradient(ellipse at 52% 55%,#c18a68 0 13%,transparent 13.5%); transform:rotate(-25deg); filter:blur(1px); }
+      .orb { position:absolute; border-radius:50%; mix-blend-mode:multiply; filter:blur(1px); } .orb-one { width:42%; aspect-ratio:1; top:19%; left:31%; background:radial-gradient(circle at 35% 25%,#ecceb8,#9a7565 48%,#443c39 100%); box-shadow:25px 35px 35px #485d5360; } .orb-two { width:29%; aspect-ratio:1; top:48%; left:13%; background:radial-gradient(circle at 33% 25%,#edf0e3,#a7aa98 55%,#6b796e); } .orb-three { width:19%; aspect-ratio:1; top:62%; right:15%; background:radial-gradient(circle at 30% 25%,#e5a487,#8e4e41 65%,#513d3c); }
+      .art-label { position:absolute; bottom:34px; left:31px; font:11px 'DM Mono'; line-height:1.65; color:#25423a; text-transform:uppercase; } .art-label span { color:var(--accent); margin-right:12px; } .art-label strong { font-weight:400; color:#fff; } .vertical-label { position:absolute; top:28px; right:22px; writing-mode:vertical-rl; text-transform:uppercase; font:10px 'DM Mono'; letter-spacing:.1em; color:#496058; }
+      .hero-foot { position:absolute; bottom:35px; left:10vw; right:10vw; border-top:1px solid var(--line); padding-top:14px; display:flex; justify-content:space-between; color:#7c8580; text-transform:uppercase; font:10px 'DM Mono'; letter-spacing:.1em; }
+      .statement { background:var(--dark); color:#eef0e7; padding:150px 14vw; display:grid; grid-template-columns:1fr 1fr; min-height:550px; align-items:center; } .statement .eyebrow { color:#e7ad91; } h2 { font-size:clamp(42px,5vw,76px); line-height:.98; font-weight:500; letter-spacing:-.06em; margin:0; } .statement-detail { align-self:end; padding:0 6vw 10px 0; display:flex; gap:22px; color:#aebdb4; font-size:14px; line-height:1.65; max-width:440px; } .detail-line { display:block; width:40px; height:1px; margin-top:9px; flex:none; background:#d96645; }
+      .catalog { padding:130px 8vw 150px; max-width:1500px; margin:auto; } .section-heading { display:flex; justify-content:space-between; align-items:end; margin-bottom:62px; } .section-heading .eyebrow { margin-bottom:20px; } .section-count { text-align:right; color:var(--muted); font:10px 'DM Mono'; text-transform:uppercase; line-height:1.8; } .section-count strong { color:var(--accent); font:42px 'Playfair Display'; }
+      .catalog-tools { border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:17px 0; display:flex; justify-content:space-between; align-items:center; gap:20px; } .search-wrap { display:flex; gap:10px; align-items:center; color:var(--accent); } .search-wrap span { font-size:28px; transform:rotate(-20deg); } input { border:0; background:none; outline:0; font:13px 'DM Sans'; color:var(--ink); width:180px; } input::placeholder { color:#969d98; } .filters { display:flex; flex-wrap:wrap; justify-content:flex-end; gap:6px; } .filters button { border:1px solid transparent; background:none; padding:7px 10px; color:#78817c; font:10px 'DM Mono'; cursor:pointer; } .filters button.active,.filters button:hover { color:var(--accent); border-color:#e4b7a5; }
+      .results-meta { min-height:48px; display:flex; justify-content:space-between; align-items:center; color:#929993; font:10px 'DM Mono'; text-transform:uppercase; } #clear-filters { border:0; background:none; color:var(--accent); font:10px 'DM Mono'; cursor:pointer; }
+      .specimen-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:42px 18px; } .specimen-card[hidden] { display:none; } .card-button { display:block; border:0; background:none; padding:0; text-align:left; width:100%; cursor:pointer; color:var(--ink); } .card-image { aspect-ratio:1.1; background:#d6d9cd; overflow:hidden; position:relative; } .card-image img { width:100%; height:100%; display:block; object-fit:cover; filter:saturate(.7); transition:transform .5s,filter .5s; } .card-button:hover img { transform:scale(1.05); filter:saturate(1); } .card-number { position:absolute; top:13px; left:14px; color:#fff; font:10px 'DM Mono'; } .view-icon { position:absolute; bottom:13px; right:14px; color:#fff; font-size:21px; opacity:0; transition:opacity .2s; } .card-button:hover .view-icon { opacity:1; } .card-info { position:relative; padding:14px 0; border-bottom:1px solid var(--line); } .card-info h3 { font:500 19px 'Playfair Display'; margin-bottom:5px; } .card-info p { color:#8a928e; font:10px 'DM Mono'; text-transform:uppercase; margin:0; } .swatch { position:absolute; right:0; top:19px; width:9px; height:9px; border-radius:50%; border:1px solid #9da69e; background:var(--swatch); }
+      .empty-state { color:var(--muted); padding:70px 0; font-family:'Playfair Display'; font-size:24px; text-align:center; }
+      .lab-note { border-top:1px solid var(--line); margin-top:28px; padding-top:18px; color:#69746e; font-size:12px; line-height:1.55; } .lab-note strong { color:var(--accent); display:block; font:10px 'DM Mono'; letter-spacing:.08em; text-transform:uppercase; margin-bottom:6px; } .lab-note span { display:block; }
+      .references { background:#e4e5dc; padding:120px 14vw; display:grid; grid-template-columns:1fr 1fr; gap:12vw; } .reference-list { padding-top:10px; } .reference-list a { padding:21px 0; border-bottom:1px solid #bdc5bb; display:grid; grid-template-columns:40px 1fr 20px; gap:10px; font-size:13px; color:#52615a; } .reference-list span { color:var(--accent); font:10px 'DM Mono'; } .reference-list b { font-weight:400; color:var(--accent); }
+      footer { padding:25px 8vw; background:var(--dark); color:#b6c1ba; display:flex; justify-content:space-between; font:10px 'DM Mono'; text-transform:uppercase; letter-spacing:.08em; } footer i { color:#fff; }
+      dialog { padding:0; border:0; max-width:850px; width:calc(100% - 40px); background:var(--paper); color:var(--ink); box-shadow:0 20px 70px #172a2580; } dialog::backdrop { background:#13231f99; backdrop-filter:blur(4px); } .modal-close { position:absolute; z-index:2; right:18px; top:12px; border:0; background:none; font-size:29px; font-weight:200; color:#fff; cursor:pointer; } .modal-image { width:44%; position:absolute; inset:0 auto 0 0; background:#d4d8cb; } .modal-image img { width:100%; height:100%; object-fit:cover; } .modal-content { margin-left:44%; padding:56px 52px; min-height:510px; } .modal-content .eyebrow { margin-bottom:18px; } .modal-content h2 { font-size:52px; margin-bottom:23px; } .modal-note { color:#69746e; font-size:14px; line-height:1.65; max-width:370px; } dl { border-top:1px solid var(--line); margin-top:40px; display:grid; grid-template-columns:1fr 1fr; gap:18px 30px; padding-top:20px; } dt { color:var(--accent); font:10px 'DM Mono'; text-transform:uppercase; margin-bottom:5px; } dd { margin:0; font-size:13px; color:#59655f; }
+      @media (max-width:800px) { .site-header { padding:0 5vw; } nav { display:none; } .header-cta { padding:10px; font-size:10px; } .hero { display:block; padding:80px 7vw 100px; } .hero-art { margin:60px 0 0; height:100vw; min-height:350px; } .hero-foot { left:7vw; right:7vw; bottom:28px; } .hero-foot span:last-child { display:none; } .statement,.references { display:block; padding:90px 8vw; } .statement-detail { margin-top:70px; } .catalog { padding:90px 6vw; } .section-heading { align-items:start; } .section-heading h2 { font-size:48px; } .section-count { margin-top:32px; } .catalog-tools { display:block; } .filters { justify-content:flex-start; margin-top:18px; } .specimen-grid { grid-template-columns:repeat(2,1fr); gap:30px 12px; } .card-info h3 { font-size:16px; } .references h2 { margin-bottom:60px; } footer { display:block; line-height:2; } footer span { display:block; } .modal-image { position:relative; width:100%; height:280px; } .modal-content { margin:0; min-height:0; padding:35px 28px 42px; } .modal-content h2 { font-size:42px; } .modal-close { color:var(--ink); } }
+    </style>
+  </head>
+  <body>
+    <div class="grain"></div>
+    <header class="site-header">
+      <a class="brand" href="#inicio" aria-label="Piedras Geo, inicio">
+        <span class="brand-mark">PG</span>
+        <span>Piedras <i>Geo</i></span>
+      </a>
+      <nav aria-label="Navegación principal">
+        <a href="#muestras">Muestras <span>20</span></a>
+        <a href="#metodo">El proyecto</a>
+        <a href="#referencias">Referencias</a>
+      </nav>
+      <a class="header-cta" href="#muestras">Explorar muestras <span>↘</span></a>
+    </header>
+
+    <main>
+      <section class="hero" id="inicio">
+        <div class="hero-copy">
+          <p class="eyebrow">Cuaderno de campo · edición 01—20</p>
+          <h1>La tierra<br /><em>en tus manos.</em></h1>
+          <p class="intro">Un archivo visual para observar, comparar y descubrir las historias que guarda cada piedra.</p>
+          <a class="primary-button" href="#muestras">Abrir el muestrario <span>→</span></a>
+        </div>
+        <div class="hero-art" aria-label="Composición de minerales">
+          <div class="orb orb-one"></div><div class="orb orb-two"></div><div class="orb orb-three"></div>
+          <div class="art-label"><span>01</span> estudio de formas<br /><strong>materia / tiempo</strong></div>
+          <div class="vertical-label">geología cotidiana</div>
+        </div>
+        <div class="hero-foot"><span>Laboratorio · geología</span><span>Desplaza para explorar ↓</span></div>
+      </section>
+
+      <section class="statement" id="metodo">
+        <p class="eyebrow">Más que una colección</p>
+        <h2>Cada muestra es<br /><em>un pequeño planeta.</em></h2>
+        <div class="statement-detail"><span class="detail-line"></span><p>Clasificamos este muestrario por composición, origen y textura. Una invitación a mirar más lento y encontrar lo extraordinario en lo que parece quieto.</p></div>
+      </section>
+
+      <section class="catalog" id="muestras">
+        <div class="section-heading">
+          <div><p class="eyebrow">Archivo de muestras</p><h2>Veinte formas<br /><em>de la materia.</em></h2></div>
+          <p class="section-count"><strong>20</strong><br />registros de observación</p>
+        </div>
+        <div class="catalog-tools">
+          <div class="search-wrap"><span>⌕</span><input id="search" type="search" placeholder="Buscar una muestra..." aria-label="Buscar una muestra" /></div>
+          <div class="filters" role="group" aria-label="Filtrar por categoría">
+            {categories.map((category, index) => <button class:list:active={index === 0} data-category={category}>{category}</button>)}
+          </div>
+        </div>
+        <div class="results-meta"><span id="results-count">20 muestras</span><button id="clear-filters" hidden>Limpiar filtros ×</button></div>
+        <div class="specimen-grid" id="specimen-grid">
+          {specimens.map((specimen) => (
+            <article class="specimen-card" data-name={specimen.name.toLowerCase()} data-category={specimen.category}>
+              <button class="card-button" data-id={specimen.id} data-name={specimen.name} data-image={specimen.image} data-note={specimen.note} data-category={specimen.category} data-color={specimen.color} data-hardness={specimen.hardness} data-formula={specimen.formula} data-streak={specimen.streak} data-luster={specimen.luster} data-habit={specimen.habit} data-lab={specimen.lab} aria-label={`Ver detalles de ${specimen.name}`}>
+                <div class="card-image"><img src={specimen.image} alt="" loading="lazy" /><span class="card-number">{specimen.id}</span><span class="view-icon">↗</span></div>
+                <div class="card-info"><h3>{specimen.name}</h3><p>{specimen.category}</p><span class="swatch" style={`--swatch: ${specimen.color}`}></span></div>
+              </button>
+            </article>
+          ))}
+        </div>
+        <p class="empty-state" id="empty-state" hidden>No encontramos muestras con esa búsqueda.</p>
+      </section>
+
+      <section class="references" id="referencias">
+        <div><p class="eyebrow">Notas de campo</p><h2>Mirar también<br /><em>es investigar.</em></h2></div>
+        <div class="reference-list"><a href="https://msaweb.org/mineral-id-key/" target="_blank" rel="noreferrer"><span>01</span> Mineralogical Society of America · Mineral ID Key <b>↗</b></a><a href="https://earth.appstate.edu/outreach/ask-geologist/mineral-identification-tables" target="_blank" rel="noreferrer"><span>02</span> Appalachian State · tablas de identificación <b>↗</b></a><a href="https://australian.museum/learn/minerals/properties/" target="_blank" rel="noreferrer"><span>03</span> Australian Museum · propiedades minerales <b>↗</b></a><a href="https://geology.utah.gov/map-pub/survey-notes/glad-you-asked/how-do-geologists-identify-minerals/" target="_blank" rel="noreferrer"><span>04</span> Utah Geological Survey · identificación <b>↗</b></a></div>
+      </section>
+    </main>
+    <footer><span>Piedras <i>Geo</i> · 2026</span><span>Hecho para observar con curiosidad.</span></footer>
+
+    <dialog id="detail-modal" aria-labelledby="modal-title">
+      <button class="modal-close" id="modal-close" aria-label="Cerrar detalle">×</button>
+      <div class="modal-image"><img id="modal-image" alt="" /></div>
+      <div class="modal-content"><p class="eyebrow" id="modal-id"></p><h2 id="modal-title"></h2><p class="modal-note" id="modal-note"></p><dl><div><dt>Grupo</dt><dd id="modal-category"></dd></div><div><dt>Color observado</dt><dd id="modal-color"></dd></div><div><dt>Fórmula química</dt><dd id="modal-formula"></dd></div><div><dt>Dureza Mohs</dt><dd id="modal-hardness"></dd></div><div><dt>Raya</dt><dd id="modal-streak"></dd></div><div><dt>Brillo</dt><dd id="modal-luster"></dd></div><div><dt>Hábito o forma</dt><dd id="modal-habit"></dd></div></dl><div class="lab-note"><strong>Identificación en laboratorio</strong><span id="modal-lab"></span></div></div>
+    </dialog>
+    <script>
+      const cards = [...document.querySelectorAll('.specimen-card')];
+      const search = document.querySelector('#search');
+      const count = document.querySelector('#results-count');
+      const empty = document.querySelector('#empty-state');
+      const clear = document.querySelector('#clear-filters');
+      let activeCategory = 'Todas';
+      function render() {
+        const query = search.value.toLowerCase().trim();
+        let visible = 0;
+        cards.forEach((card) => {
+          const matches = (!query || card.dataset.name.includes(query)) && (activeCategory === 'Todas' || card.dataset.category === activeCategory);
+          card.hidden = !matches;
+          if (matches) visible++;
+        });
+        count.textContent = `${visible} ${visible === 1 ? 'muestra' : 'muestras'}`;
+        empty.hidden = visible !== 0;
+        clear.hidden = !query && activeCategory === 'Todas';
+      }
+      document.querySelectorAll('.filters button').forEach((button) => button.addEventListener('click', () => {
+        activeCategory = button.dataset.category;
+        document.querySelectorAll('.filters button').forEach((item) => item.classList.toggle('active', item === button));
+        render();
+      }));
+      search.addEventListener('input', render);
+      clear.addEventListener('click', () => { search.value = ''; activeCategory = 'Todas'; document.querySelectorAll('.filters button').forEach((item, index) => item.classList.toggle('active', index === 0)); render(); });
+      const dialog = document.querySelector('#detail-modal');
+      document.querySelectorAll('.card-button').forEach((button) => button.addEventListener('click', () => {
+        const specimen = button.dataset;
+        document.querySelector('#modal-image').src = specimen.image;
+        document.querySelector('#modal-image').alt = specimen.name;
+        document.querySelector('#modal-id').textContent = `Muestra · ${specimen.id}`;
+        document.querySelector('#modal-title').textContent = specimen.name;
+        document.querySelector('#modal-note').textContent = specimen.note;
+        document.querySelector('#modal-category').textContent = specimen.category;
+        document.querySelector('#modal-color').textContent = specimen.color;
+        document.querySelector('#modal-formula').textContent = specimen.formula;
+        document.querySelector('#modal-hardness').textContent = specimen.hardness;
+        document.querySelector('#modal-streak').textContent = specimen.streak;
+        document.querySelector('#modal-luster').textContent = specimen.luster;
+        document.querySelector('#modal-habit').textContent = specimen.habit;
+        document.querySelector('#modal-lab').textContent = specimen.lab;
+        dialog.showModal();
+      }));
+      document.querySelector('#modal-close').addEventListener('click', () => dialog.close());
+      dialog.addEventListener('click', (event) => { if (event.target === dialog) dialog.close(); });
+    </script>
+  </body>
+</html>
