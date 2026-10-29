@@ -1,4 +1,4 @@
-# Piedras Geo
+# Taller 2: Logística y campaña de terreno
 
 Muestrario digital interactivo de 20 minerales y rocas. Incluye búsqueda, filtros por grupo mineralógico y fichas detalladas con fotografías, propiedades e identificación de laboratorio.
 
